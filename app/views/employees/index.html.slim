@@ -1,0 +1,13 @@
+h1 社員一覧
+
+table
+  thead
+    tr
+      th 社員番号
+      th 社員名
+
+  tbody
+    - @employees.each do |employee|
+      tr
+        td = employee.number
+        td = employee.name

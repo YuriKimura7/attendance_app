@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+    attributes:
+      employee:
+        name: 社員名
+        number: 社員番号

@@ -17,11 +17,11 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @employee = Employee.find_by(params[:id])
+    @employee = Employee.find(params[:id])
   end
 
   def update
-    @employee = Employee.find_by(params[:id])
+    @employee = Employee.find(params[:id])
     if @employee.update(employee_params)
       redirect_to employees_path, notice: "編集しました"
     else

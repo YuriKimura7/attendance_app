@@ -1,0 +1,13 @@
+= form_for @employee do |f|
+
+  - if @employee.errors.any?
+    - @employee.errors.full_messages.each do |message|
+      li = message
+
+  = f.label :number, "社員番号"
+  = f.text_field :number
+  p
+  = f.label :name, "社員名"
+  = f.text_field :name
+  p
+  = f.submit submit

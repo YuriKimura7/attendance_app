@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get 'employees/index'
+  resources :employees, except: [:show, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

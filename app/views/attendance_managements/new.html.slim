@@ -5,7 +5,7 @@ h1 出退勤打刻
   p
   = f.datetime_select :time, default: DateTime.now, use_month_numbers:true, date_separator: ' / '
   p
-  = f.select :attendance, AttendanceManagement.attendances.map { |key, value|[t("enums.attendance_management.attendance.#{key}"), value] }
+  = f.select :attendance, AttendanceManagement.attendances.map { |key, value|[t("enums.attendance_management.attendance.#{key}"), key] }
   p
   = f.submit
 p

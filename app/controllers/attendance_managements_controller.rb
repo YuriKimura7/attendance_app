@@ -1,4 +1,8 @@
 class AttendanceManagementsController < ApplicationController
+  def index
+    @attendance_managements = AttendanceManagement.all
+  end
+
   def new
     @attendance_management = AttendanceManagement.new
   end

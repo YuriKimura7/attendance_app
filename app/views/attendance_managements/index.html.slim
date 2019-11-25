@@ -1,1 +1,16 @@
 h1　履歴
+
+= form_with(url: attendance_managements_path, method: :get, local: true) do |f|
+  = f.label :year_and_month, "年月"
+
+table
+  thead
+    tr
+      th 社員番号
+      th 社員名
+
+  tbody
+    - @attendance_managements.each do |am|
+      tr
+        td = am.employee.number
+        td = am.employee.name

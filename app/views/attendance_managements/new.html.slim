@@ -1,0 +1,12 @@
+h1 出退勤打刻
+
+= form_for @attendance_management do |f|
+  = f.collection_select(:employee_id,Employee.all, :id, :name, prompt: true)
+  p
+  = f.datetime_select :time, default: DateTime.now, use_month_numbers:true, date_separator: ' / '
+  p
+  = f.select :attendance, AttendanceManagement.attendances.map { |key, value|[t("enums.attendance_management.attendance.#{key}"), key] }
+  p
+  = f.submit
+p
+= notice

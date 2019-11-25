@@ -5,3 +5,8 @@ ja:
       employee:
         name: 社員名
         number: 社員番号
+  enums:
+    attendance_management:
+      attendance:
+        going: 出社
+        leaving: 退社

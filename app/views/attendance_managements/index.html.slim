@@ -8,9 +8,13 @@ table
     tr
       th 社員番号
       th 社員名
+      th 出社時間
+      th 退社時間
 
   tbody
     - @attendance_managements.each do |am|
       tr
         td = am.employee.number
         td = am.employee.name
+        td = am.time.strftime("%Y-%m-%d %H:%M") if am.going?
+        td = am.time.strftime("%Y-%m-%d %H:%M") if am.leaving?

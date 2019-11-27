@@ -3,9 +3,14 @@ h1　履歴
 = form_with(url: attendance_managements_path, method: :get, local: true) do |f|
   = f.label :year_and_month, "年月"
 
+  = f.label :name, "社員名"
+  = f.collection_select(:employee_id, Employee.all, :id, :name)
+
+
 table
   thead
     tr
+      th 日付
       th 社員番号
       th 社員名
       th 出社時間
@@ -14,7 +19,8 @@ table
   tbody
     - @attendance_managements.each do |am|
       tr
+        td = am.time.strftime("%m月%d日")
         td = am.employee.number
         td = am.employee.name
-        td = am.time.strftime("%Y-%m-%d %H:%M") if am.going?
-        td = am.time.strftime("%Y-%m-%d %H:%M") if am.leaving?
+        td = am.time.strftime("%H:%M") if am.going?
+        td = am.time.strftime("%H:%M") if am.leaving?

@@ -1,6 +1,7 @@
 class AttendanceManagementsController < ApplicationController
   def index
     @attendance_managements = AttendanceManagement.all
+    @attendance_managements = @attendance_managements.where(time: params[:year_and_month]) if params[:year_and_month].present?
   end
 
   def new

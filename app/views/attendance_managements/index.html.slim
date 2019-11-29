@@ -1,11 +1,11 @@
 h1　履歴
 
 = form_with(url: attendance_managements_path, method: :get, local: true) do |f|
-  = raw sprintf(f.date_select(:year_and_month, use_month_numbers:true, discard_day:true,
-    start_year: 2018, end_year: 2020, date_separator:'%s'),'年') + '月'
-  = f.label :name, "　社員名"
-  = f.collection_select(:employee, Employee.all, :id, :name)
-  = f.submit "表示する"
+    = raw sprintf(f.datetime_select(:year_and_month, use_month_numbers:true, discard_day:true, discard_hour:true,
+      start_year: 2018, end_year: 2020, date_separator:'%s'),'年') + '月'
+    = f.label :name, "　社員名"
+    = f.collection_select(:employee, Employee.all, :id, :name)
+    = f.submit "表示する"
 
 table
   thead

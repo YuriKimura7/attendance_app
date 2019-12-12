@@ -1,14 +1,11 @@
 h1　履歴
 
-
 = form_with(url: attendance_managements_path, method: :get, local: true) do |f|
-    = raw sprintf(f.date_select(:year_and_month, use_month_numbers:true, discard_day:true,
-      start_year: 2018, end_year: 2020, date_separator:'%s'),'年') + '月'
-    = f.label :name, "　社員名"
-    = f.collection_select(:employee, Employee.all, :id, :name, prompt: "")
-    = f.submit "表示する"
-
-
+  = raw sprintf(f.date_select(:year_and_month, use_month_numbers:true, discard_day:true,
+    start_year: 2018, end_year: 2020, date_separator:'%s'),'年') + '月'
+  = f.label :name, "　社員名"
+  = f.collection_select(:employee, Employee.all, :id, :name, prompt: "")
+  = f.submit "表示する"
 
 table
   thead
@@ -20,7 +17,20 @@ table
 
   tbody
     - @days.all_month.each do |days|
-      tr
-        td = days.month
-        td = days.day
-        td = @attendance_managements.find {|am| am.time.to_date == days if am.going?}
+      - if @attendance_managements
+        - am = @attendance_managements.find_all { |am| am.time.to_date == days }
+        tr
+          td = days.month
+          td = days.day
+
+          td
+            - if am
+              - am.each do |am|
+                - if am.going?
+                  = am.time.strftime("%H:%-M")
+
+          td
+            - if am
+              - am.each do |am|
+                - if am.leaving?
+                  = am.time.strftime("%H:%-M")

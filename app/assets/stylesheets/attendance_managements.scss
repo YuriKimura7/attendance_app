@@ -1,3 +1,18 @@
 // Place all the styles related to the AttendanceManagements controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+table, th, td {
+  border-collapse: collapse;
+  border: 1px #808080 solid;
+}
+table {
+  width: 250px;
+  text-align: center;
+}
+.blue {
+  color: blue;
+}
+.red {
+  color: red;
+}

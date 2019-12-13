@@ -11,7 +11,8 @@ table
   thead
     tr
       th 月
-      th 日付
+      th 日
+      th 曜日
       th 出社時間
       th 退社時間
 
@@ -19,10 +20,17 @@ table
     - @days.all_month.each do |days|
       - if @attendance_managements
         - am = @attendance_managements.find_all { |am| am.time.to_date == days }
+        - day_of_the_week = %w(日 月 火 水 木 金 土)[days.wday]
         tr
           td = days.month
           td = days.day
-
+          td
+            - if days.wday == 6
+              .blue = day_of_the_week
+            - elsif days.wday == 0
+              .red = day_of_the_week
+            - else
+              = day_of_the_week
           td
             - if am
               - am.each do |am|

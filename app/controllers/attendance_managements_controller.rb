@@ -1,8 +1,11 @@
 class AttendanceManagementsController < ApplicationController
   def index
     @days = Date.today
-    @days = Date.new(params["year_and_month(1i)"].to_i,params["year_and_month(2i)"].to_i,params["year_and_month(3i)"].to_i) if params["year_and_month(1i)"].present?
+    if params["year_and_month(1i)"].present? && params["year_and_month(2i)"].present?
+      @days = Date.new(params["year_and_month(1i)"].to_i,params["year_and_month(2i)"].to_i,params["year_and_month(3i)"].to_i)
+    end
     @attendance_managements = AttendanceManagement.where(employee_id: params[:employee]) if params[:employee].present?
+    @employee = Employee.find(params[:employee]) if params[:employee].present?
   end
 
   def new

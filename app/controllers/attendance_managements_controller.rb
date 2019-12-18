@@ -33,4 +33,9 @@ class AttendanceManagementsController < ApplicationController
       "#{ @attendance_management.employee.name }さん、お疲れ様です。"
     end
   end
+
+  def wday_class(wday)
+      wday == 6 ? 'blue' : wday == 1 ? 'red' : ''
+  end
+  helper_method :wday_class
 end

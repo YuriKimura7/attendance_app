@@ -22,27 +22,20 @@ table
 
   tbody
     - @days.all_month.each do |days|
-      - day_of_the_week = %w(日 月 火 水 木 金 土)[days.wday]
+      - days_of_the_week = %w(日 月 火 水 木 金 土)[days.wday]
       - if @attendance_managements
-        - am = @attendance_managements.find_all { |am| am.time.to_date == days }
+        - ams = @attendance_managements.find_all { |am| am.time.to_date == days }
+        - going = ams.find { |am| am.going? }
+        - leaving = ams.find { |am| am.leaving? }
+
         tr
           td = days.month
           td = days.day
+          td class="#{wday_class(days.wday)}" = days_of_the_week
           td
-            - if days.wday == 6
-              .blue = day_of_the_week
-            - elsif days.wday == 0
-              .red = day_of_the_week
-            - else
-              = day_of_the_week
-          td
-            - if am
-              - am.each do |am|
-                - if am.going?
-                  = am.time.strftime("%H:%-M")
+            - if going
+              = going.time.strftime("%H:%-M")
 
           td
-            - if am
-              - am.each do |am|
-                - if am.leaving?
-                  = am.time.strftime("%H:%-M")
+            - if leaving
+              = leaving.time.strftime("%H:%-M")

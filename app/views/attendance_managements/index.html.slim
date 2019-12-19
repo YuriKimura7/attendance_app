@@ -1,0 +1,41 @@
+h1　履歴
+
+= form_with(url: attendance_managements_path, method: :get, local: true) do |f|
+  = raw sprintf(f.date_select(:year_and_month, use_month_numbers:true, discard_day:true,
+    start_year: 2018, end_year: 2020, date_separator:'%s'),'年') + '月'
+  = f.label :name, "　社員名"
+  = f.collection_select(:employee, Employee.all, :id, :name, prompt: "")
+  = f.submit "表示する"
+
+- if @employee
+  = @employee.number
+  = @employee.name
+
+table
+  thead
+    tr
+      th 月
+      th 日
+      th 曜日
+      th 出社時間
+      th 退社時間
+
+  tbody
+    - @days.all_month.each do |days|
+      - days_of_the_week = %w(日 月 火 水 木 金 土)[days.wday]
+      - if @attendance_managements
+        - ams = @attendance_managements.find_all { |am| am.time.to_date == days }
+        - going = ams.find { |am| am.going? }
+        - leaving = ams.find { |am| am.leaving? }
+
+        tr
+          td = days.month
+          td = days.day
+          td class="#{wday_class(days.wday)}" = days_of_the_week
+          td
+            - if going
+              = going.time.strftime("%H:%-M")
+
+          td
+            - if leaving
+              = leaving.time.strftime("%H:%-M")

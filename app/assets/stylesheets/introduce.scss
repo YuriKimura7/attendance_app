@@ -1,0 +1,68 @@
+
+.introduce {
+  background-color: #FFEEFF;
+
+  h1 {
+    color: #6594e0;
+    width: 330px;
+    border-radius: 10px;
+    text-align: center;
+    letter-spacing: 40px;
+    text-indent: 40px;
+    margin: 10px auto;
+    border-top: solid 2px white;
+    border-bottom: solid 2px white;
+  }
+
+  .image {
+    text-align: center;
+    img {
+      width: 185px;
+      height:200px;
+      border-radius: 50%;
+      border: 3px solid #6594e0;
+    }
+  }
+
+  .name {
+    text-align: center;
+    letter-spacing: 20px;
+    color: #6594e0;
+  }
+
+  table {
+    table-layout: fixed;
+    width: 80%;
+    margin-left: 30px;
+  }
+  table, th, td {
+    border: none;
+  }
+
+  th, td {
+    border-bottom: solid 2px white;
+  }
+
+  tr:last-child th, tr:last-child td {
+    border-bottom: none;
+  }
+
+  th {
+    position: relative;
+    background-color: #6594e0;
+    color: #EEEEEE;
+    text-align: center;
+    width: 20%;
+  }
+
+  td {
+    text-align: center;
+    background-color: #EEEEEE;
+    font-weight: 800;
+    color: #6594e0;
+    width: 80%;
+  }
+  .borderless {
+    border: #EEEEEE;
+  }
+}

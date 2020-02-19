@@ -14,10 +14,9 @@ class AttendanceManagementsController < ApplicationController
 
   def create
     @attendance_management = AttendanceManagement.new(attendance_params)
-    params = attendance_params
-    attendance_check = AttendanceManagement.find_by(employee_id: params[:employee_id], time: Date.new(params["time(1i)"].to_i, params["time(2i)"].to_i, params["time(3i)"].to_i).all_day)
-    if @attendance_management.going? && !attendance_check || attendance_check && @attendance_management.leaving?
-      @attendance_management.save
+    attendance_going = AttendanceManagement.find_by(employee_id: attendance_params[:employee_id], time: Date.new(attendance_params["time(1i)"].to_i, attendance_params["time(2i)"].to_i, attendance_params["time(3i)"].to_i).all_day)
+    attendance_leaving = AttendanceManagement.find_by(attendance: 1, employee_id: attendance_params[:employee_id], time: Date.new(attendance_params["time(1i)"].to_i, attendance_params["time(2i)"].to_i, attendance_params["time(3i)"].to_i).all_day)
+    if (@attendance_management.going? && !attendance_going) || (attendance_going && !attendance_leaving && @attendance_management.leaving?)
       if @attendance_management.save
         redirect_to new_attendance_management_path, notice: message
       else

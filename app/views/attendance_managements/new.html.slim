@@ -10,3 +10,6 @@ h1 出退勤打刻
   = f.submit
 p
 = notice
+
+- if @attendance_management.errors.any?
+  p 名前を選択してください

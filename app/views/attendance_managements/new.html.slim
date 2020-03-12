@@ -12,4 +12,5 @@ p
 = notice
 
 - if @attendance_management.errors.any?
-  p 名前を選択してください
+  - @attendance_management.errors.full_messages.each do |message|
+    = message
